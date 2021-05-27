@@ -10,6 +10,7 @@
         .box {
             height: 600px;
             width: 800px;
+            overflow: auto;
             background: #eeeeee;
         }
 
@@ -28,7 +29,9 @@
 <script>
     function game(playerAction) {
         fetch('http://localhost:3000/game?action=' + playerAction).then((res) => {
-            console.log(res)
+            return res.text()
+        }).then((text) => {
+            document.getElementsByClassName('box')[0].innerHTML += text + '<br/>'
         })
     }
 </script>
