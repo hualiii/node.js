@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>game</title>
+    <style>
+        .box {
+            height: 600px;
+            width: 800px;
+            overflow: auto;
+            background: #eeeeee;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<button class="btn" onclick="game('rock')">石头</button>
+<button class="btn" onclick="game('scissor')">剪刀</button>
+<button class="btn" onclick="game('papers')">布</button>
+</body>
+<script>
+    function game(playerAction) {
+        fetch('http://localhost:3000/game?action=' + playerAction).then((res) => {
+            return res.text()
+        }).then((text) => {
+            document.getElementsByClassName('box')[0].innerHTML += text + '<br/>'
+        })
+    }
+</script>
+</html>
